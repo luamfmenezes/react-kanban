@@ -1,19 +1,33 @@
 import React from "react";
 
 import { Container, Label } from "./styles";
+import { Draggable } from "react-beautiful-dnd";
 
-function Card() {
+function Card({ data, index }) {
   return (
-    <Container>
-      <header>
-        <Label color="#7159c1" />
-      </header>
-      <p>Create server migration to Digital Ocean</p>
-      <img
-        src="https://api.adorable.io/avatars/285/abott@adorable.png"
-        alt="profile"
-      />
-    </Container>
+    <Draggable draggableId={"" + data.id} index={index}>
+      {(provided, snapshot) => (
+        <Container
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+        >
+          <header>
+            {data.labels.map((label) => (
+              <Label color={label} />
+            ))}
+          </header>
+          <p>{data.content}</p>
+          {data.user && (
+            <img
+              src={`https://api.adorable.io/avatars/285/${data.user}.png`}
+              alt="profile"
+            />
+          )}
+        </Container>
+      )}
+    </Draggable>
   );
 }
 

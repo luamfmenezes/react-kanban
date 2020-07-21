@@ -39,9 +39,3 @@ export const Container = styled.div`
     opacity: ${(props) => (props.done ? 0.6 : 1)};
   }
 `;
-
-export const SolidBlock = styled.div`
-  width: 320px;
-  height: 30px;
-  background: Red;
-`;

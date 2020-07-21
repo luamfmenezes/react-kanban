@@ -9,6 +9,8 @@ export const Container = styled.div`
   box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
   border-top: 20px solid rgba(230, 236, 245, 0.4);
   cursor: grab;
+  transition: 0.2s;
+  opacity: ${(props) => (props.isDragging ? 0.8 : 1)};
   header {
     position: absolute;
     top: -22px;
