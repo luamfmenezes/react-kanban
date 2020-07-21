@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 export const Container = styled.div`
-  padding: 0 15px;
+  padding: 0 5px 0 15px;
   height: 100%;
   flex: 0 0 320px;
   /* 
@@ -30,20 +31,42 @@ export const Container = styled.div`
       width: 42px;
       border-radius: 18px;
       background: #3b5bfd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       border: 0;
       cursor: pointer;
     }
   }
+`;
+
+export const Content = styled(PerfectScrollbar).attrs({
+  wheelSpeed: 0.1,
+})`
+  margin-top: 30px;
+  padding-right: 16px;
+  height: calc(100% - 64px);
   ul {
-    margin-top: 30px;
-    height: calc(100% - 64px);
     opacity: ${(props) => (props.done ? 0.6 : 1)};
-    overflow: auto;
   }
 `;
 
-export const SolidBlock = styled.div`
-  width: 320px;
-  height: 30px;
-  background: Red;
+export const AddCardButton = styled.button`
+  width: 300px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
+  transition: 0.2s;
+  border: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: #f7f9ff;
+  }
+  svg {
+    margin-left: 0.5rem;
+  }
 `;

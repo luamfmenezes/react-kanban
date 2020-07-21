@@ -15,10 +15,13 @@ function Card({ data, snapshot }) {
       </header>
       <p>{data.content}</p>
       {data.user && (
-        <img
-          src={`https://api.adorable.io/avatars/285/${data.user}.png`}
-          alt="profile"
-        />
+        <div>
+          <img
+            src={`https://api.adorable.io/avatars/285/${data.user}.png`}
+            alt="profile"
+          />
+          <p>{data.user}</p>
+        </div>
       )}
     </Container>
   );

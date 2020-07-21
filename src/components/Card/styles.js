@@ -10,7 +10,12 @@ export const Container = styled.div`
   border-top: 20px solid rgba(230, 236, 245, 0.4);
   cursor: grab;
   transition: 0.2s;
-  opacity: ${(props) => (props.isDragging ? 0.8 : 1)};
+  ${(props) =>
+    props.isDragging &&
+    css`
+      opacity: 0.6;
+      /* transform: rotate(-6deg); */
+    `};
 
   ${(props) =>
     props.overTrash &&
@@ -27,11 +32,18 @@ export const Container = styled.div`
     font-weight: 500;
     line-height: 20px;
   }
-  img {
-    width: 24px;
-    height: 24px;
-    border-radius: 2px;
-    margin-top: 5px;
+  div {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #f7f7ff;
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      border-radius: 2px;
+    }
   }
 `;
 

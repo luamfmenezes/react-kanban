@@ -1,40 +1,46 @@
 import React from "react";
 import { MdAdd } from "react-icons/md";
-import { Container } from "./styles";
+import { Container, Content, AddCardButton } from "./styles";
 import Card from "../Card";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-function List({ data }) {
+function List({ data, openAddCardModal }) {
   return (
-    <Container done={data.done}>
+    <Container>
       <header>
         <h2>{data.title}</h2>
-        {data.creatable && (
-          <button>
-            <MdAdd size={24} color="#fff" />
-          </button>
-        )}
       </header>
-      <Droppable droppableId={data.title}>
-        {(provided, snapshotDrop) => (
-          <ul {...provided.droppableProps} ref={provided.innerRef}>
-            {data.cards.map((card, index) => (
-              <Draggable draggableId={`${card.id}`} key={card.id} index={index}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Card data={card} snapshot={snapshot} />
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </ul>
-        )}
-      </Droppable>
+      <Content done={data.done}>
+        <Droppable droppableId={data.title}>
+          {(provided, snapshotDrop) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {data.cards.map((card, index) => (
+                <Draggable
+                  draggableId={`${card.id}`}
+                  key={card.id}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Card data={card} snapshot={snapshot} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+        <AddCardButton onClick={() => openAddCardModal(data.title)}>
+          new card
+          <MdAdd size={20} color="#777" />
+        </AddCardButton>
+      </Content>
     </Container>
   );
 }
