@@ -29,11 +29,15 @@ export const Content = styled.form`
   display: flex;
   flex-direction: column;
   background: #fff;
-  padding: 32px;
+  padding: 24px;
   border-radius: 4px;
   box-shadow: 0 0 1000px 100px rgba (0, 0, 0, 0.6);
+  border-top: 20px solid rgba(230, 236, 245, 0.4);
   h1 {
     margin-bottom: 0.5rem;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
   }
   label {
     margin-top: 0.5rem;
@@ -44,6 +48,14 @@ export const Content = styled.form`
     border-radius: 4px;
     min-width: 250px;
     padding-left: 0.5rem;
+  }
+  small {
+    font-size: 12px;
+    background: #7159c1;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -57,9 +69,10 @@ export const Color = styled.div`
   height: 24px;
   border-radius: 12px;
   transition: 0.2s;
-  border: 2px solid ${(props) => (props.selected ? "#aaa" : "transparent")};
+  border: 2px solid ${(props) => (props.selected ? "#666" : "transparent")};
   background: ${(props) => props.color};
   cursor: pointer;
+
   & + div {
     margin-left: 0.5rem;
   }
@@ -67,10 +80,16 @@ export const Color = styled.div`
 
 export const Buttons = styled.div`
   display: flex;
-  justify-content: flex-end;
   padding-top: 20px;
   margin-top: 4px;
   border-top: 1px solid #ddd;
+  justify-content: flex-end;
+  align-items: center;
+  p {
+    color: #777;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
   button {
     background: #3b5bfd;
     height: 40px;

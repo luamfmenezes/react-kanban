@@ -18,37 +18,23 @@ export const Container = styled.div`
 
   header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 42px;
+    margin-left: 6px;
     h2 {
       font-weight: 500;
       font-size: 16px;
       padding: 0 10px;
     }
-    button {
-      height: 42px;
-      width: 42px;
-      border-radius: 18px;
-      background: #3b5bfd;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border: 0;
-      cursor: pointer;
-    }
   }
 `;
 
-export const Content = styled(PerfectScrollbar).attrs({
-  wheelSpeed: 0.1,
-})`
+export const Content = styled(PerfectScrollbar)`
   margin-top: 30px;
   padding-right: 16px;
   height: calc(100% - 64px);
   ul {
-    opacity: ${(props) => (props.done ? 0.6 : 1)};
+    opacity: ${(props) => (props.done === "true" ? 0.6 : 1)};
   }
 `;
 

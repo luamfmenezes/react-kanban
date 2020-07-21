@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import "react-perfect-scrollbar/dist/css/styles.css";
 
 export default createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
@@ -11,6 +10,7 @@ export default createGlobalStyle`
     }
 
     html, body, #root{
+        width:100%;
         height:100%;
     }
 

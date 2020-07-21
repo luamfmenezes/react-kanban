@@ -1,4 +1,5 @@
 import React from "react";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";

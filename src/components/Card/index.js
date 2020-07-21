@@ -9,9 +9,7 @@ function Card({ data, snapshot }) {
       overTrash={snapshot.draggingOver === "trash"}
     >
       <header>
-        {data.labels.map((label) => (
-          <Label color={label} key={data.id + ":" + label} />
-        ))}
+        <Label color={data.label} />
       </header>
       <p>{data.content}</p>
       {data.user && (

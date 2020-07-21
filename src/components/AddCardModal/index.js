@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 import { Container, Content, Colors, Color, Buttons } from "./styles";
+import { uuid } from "uuidv4";
 
 function AddCardModal({ close, addCard, list }) {
   const [content, setContent] = useState("");
@@ -8,28 +9,32 @@ function AddCardModal({ close, addCard, list }) {
   const [color, selectColor] = useState("#ff695e");
   const ref = useRef();
 
-  useEffect(() => {
-    function handleClickOutside(event) {
+  const handleClickOutside = useCallback(
+    (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         close();
       }
-    }
+    },
+    [ref, close]
+  );
+
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [ref, handleClickOutside]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCard(list, { id: 34, user, content, labels: [color] });
+    addCard(list, { id: uuid(), user, content, label: color });
     close();
   };
 
   return (
     <Container>
       <Content ref={ref} onSubmit={handleSubmit}>
-        <h1>{list}</h1>
+        <h1>
+          Add card <small>{list}</small>
+        </h1>
         <label>Task</label>
         <input value={content} onChange={(e) => setContent(e.target.value)} />
         <label>Owner</label>
@@ -63,9 +68,7 @@ function AddCardModal({ close, addCard, list }) {
           />
         </Colors>
         <Buttons>
-          <button type="button" onClick={close}>
-            Cancel
-          </button>
+          <p onClick={close}>Cancel</p>
           <button type="submit">New List</button>
         </Buttons>
       </Content>
