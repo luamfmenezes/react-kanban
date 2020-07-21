@@ -36,7 +36,9 @@ export const Container = styled.div`
   }
   ul {
     margin-top: 30px;
+    height: calc(100% - 64px);
     opacity: ${(props) => (props.done ? 0.6 : 1)};
+    overflow: auto;
   }
 `;
 

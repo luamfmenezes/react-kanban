@@ -11,40 +11,28 @@ function Board() {
   const handleDragEnd = (result, provided) => {
     const { destination, source } = result;
 
-    const selectedCard = lists.find((list) => list.title === source.droppableId)
-      .cards[source.index];
+    if (destination) {
+      const selectedCard = lists.find(
+        (list) => list.title === source.droppableId
+      ).cards[source.index];
 
-    removeCard(source.droppableId, selectedCard.id);
+      const newLists = lists.map((list) => {
+        let newList = list;
 
-    const cards = lists.find((list) => list.title === destination.droppableId)
-      .cards;
+        if (newList.title === source.droppableId) {
+          delete newList.cards[source.index];
+        }
 
-    const cardsInit = cards.slice(0, destination.index);
-    const cardsFinish = cards.slice(destination.index, cards.length);
-
-    setCards(destination.droppableId, [
-      ...cardsInit,
-      selectedCard,
-      ...cardsFinish,
-    ]);
-  };
-
-  const setCards = (listTitle, cards) => {
-    setLists((oldLists) =>
-      oldLists.map((list) =>
-        list.title === listTitle ? { ...list, cards } : list
-      )
-    );
-  };
-
-  const removeCard = (listTitle, id) => {
-    setLists((oldLists) =>
-      oldLists.map((list) =>
-        list.title === listTitle
-          ? { ...list, cards: list.cards.filter((card) => card.id !== id) }
-          : list
-      )
-    );
+        if (
+          newList.title === destination.droppableId &&
+          destination.droppableId !== "trash"
+        ) {
+          newList.cards.splice(destination.index, 0, selectedCard);
+        }
+        return newList;
+      });
+      setLists(newLists);
+    }
   };
 
   return (
@@ -64,6 +52,7 @@ function Board() {
               size={32}
               color={snapshot.isDraggingOver ? "#ff7777" : "#7159c1"}
             />
+            {provided.placeholder}
           </Trash>
         )}
       </Droppable>

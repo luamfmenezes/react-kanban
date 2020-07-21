@@ -7,9 +7,9 @@ export const Container = styled.div`
 `;
 
 export const Trash = styled.div`
-  width: ${(props) => (props.isDraggingOver ? 260 : 64)}px;
-  height: ${(props) => (props.isDraggingOver ? 180 : 64)}px;
-  position: absolute;
+  width: 64px;
+  height: 64px;
+  position: fixed;
   bottom: 32px;
   right: 32px;
   border: 1px solid

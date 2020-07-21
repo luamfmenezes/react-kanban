@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: relative;
@@ -11,6 +11,13 @@ export const Container = styled.div`
   cursor: grab;
   transition: 0.2s;
   opacity: ${(props) => (props.isDragging ? 0.8 : 1)};
+
+  ${(props) =>
+    props.overTrash &&
+    css`
+      background: #ff7777;
+    `}
+
   header {
     position: absolute;
     top: -22px;
