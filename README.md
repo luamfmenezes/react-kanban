@@ -3,6 +3,8 @@
 Simple kanban board created with react only.
 This project goal is pratice the use of dnd with the library: react-beatiful-dnd
 
+![](kanban.gif)
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
