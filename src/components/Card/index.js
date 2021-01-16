@@ -15,7 +15,7 @@ function Card({ data, snapshot }) {
       {data.user && (
         <div>
           <img
-            src={`https://api.adorable.io/avatars/285/${data.user}.png`}
+            src={`https://ui-avatars.com/api/?background=3399ff&color=ffffff&bold=true&name=${data.user}.png`}
             alt="profile"
           />
           <p>{data.user}</p>
